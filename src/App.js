@@ -11,11 +11,15 @@ function App() {
     event.preventDefault();
     setTodos([...todos, todo]);
   }
+  const deleteTodo = (event) => {
+    event.preventDefault();
+    setTodos(todos.filter((todo, index) => parseInt(event.target.id) !== index));
+  }
 
   return (
     <div className="App">
       <div class="header">
-      <h1>Todo list</h1>
+        <h1>Todo list</h1>
       </div>
       <form onSubmit={addTodo}>
         <b>Description:
@@ -35,6 +39,7 @@ function App() {
               <tr key={index}>
                 <td>{todo.date}</td>
                 <td>{todo.desc}</td>
+                <td><button onClick={deleteTodo} id={index}>Delete</button></td>
               </tr>
             )
           }
